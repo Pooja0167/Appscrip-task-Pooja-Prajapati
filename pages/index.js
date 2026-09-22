@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -8,10 +8,30 @@ import ProductGrid from '../components/ProductGrid';
 import { fetchAllProducts, fetchCategories } from '../lib/fetchProducts';
 import styles from '../styles/Home.module.css';
 
-export default function Home({ products, categories, fetchError }) {
+export default function Home({ products: initialProducts, categories: initialCategories, fetchError }) {
+  const [products, setProducts] = useState(initialProducts);
+  const [categories, setCategories] = useState(initialCategories);
+  const [loadError, setLoadError] = useState(fetchError);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [sortBy, setSortBy] = useState('recommended');
   const [filtersOpen, setFiltersOpen] = useState(false);
+
+  // Fallback: agar server-side (SSR) fetch fail ho gaya (jaise host provider ki IP
+  // API ne block kar di), to browser se khud dobara fetch try karte hain -
+  // browser requests aksar block nahi hoti.
+  useEffect(() => {
+    if (fetchError) {
+      Promise.all([fetchAllProducts(), fetchCategories()])
+        .then(([freshProducts, freshCategories]) => {
+          setProducts(freshProducts);
+          setCategories(freshCategories);
+          setLoadError(null);
+        })
+        .catch((err) => {
+          setLoadError(err.message || 'Unable to load products');
+        });
+    }
+  }, [fetchError]);
 
   function toggleCategory(category) {
     setSelectedCategories((prev) =>
@@ -26,7 +46,7 @@ export default function Home({ products, categories, fetchError }) {
       result = result.filter((p) => selectedCategories.includes(p.category));
     }
 
-       const sorted = [...result];
+    const sorted = [...result];
     if (sortBy === 'price-asc') sorted.sort((a, b) => a.price - b.price);
     else if (sortBy === 'price-desc') sorted.sort((a, b) => b.price - a.price);
     else if (sortBy === 'newest') sorted.sort((a, b) => b.id - a.id);
@@ -69,18 +89,13 @@ export default function Home({ products, categories, fetchError }) {
       </Head>
 
       <Header />
-      
 
       <main>
-            
-        {fetchError && (
+        {loadError && (
           <p style={{ background: '#ffe5e5', color: '#900', padding: '12px 24px', textAlign: 'center' }}>
-            Debug: Product fetch failed — {fetchError}
+            Debug: Product fetch failed — {loadError}
           </p>
         )}
-
-        <section className={`container ${styles.hero}`}></section> 
-
 
         <section className={`container ${styles.hero}`}>
           <h1>Discover Our Products</h1>
