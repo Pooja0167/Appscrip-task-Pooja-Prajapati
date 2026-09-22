@@ -1,11 +1,29 @@
+/* ===== Shared responsive gutter (same variable used in header.css) ===== */
+:root {
+  --container-padding: 60px; /* desktop default */
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --container-padding: 32px; /* tablet */
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --container-padding: 16px; /* mobile */
+  }
+}
+
 .footer {
   background: var(--color-black);
   color: var(--color-white);
   margin-top: 60px;
-  padding: 28px 0 20px;
+  padding: 28px var(--container-padding) 20px;
   border-top: 3px solid #6b3fa0;
   width: 100%;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .newsletter {
@@ -269,6 +287,9 @@
 }
 
 @media (max-width: 640px) {
+  .footer {
+    padding: 24px var(--container-padding) 20px;
+  }
   .newsletter {
     flex-direction: column;
   }

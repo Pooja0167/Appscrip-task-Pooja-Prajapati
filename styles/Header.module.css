@@ -1,3 +1,20 @@
+/* ===== Shared responsive gutter (same variable used in footer.css) ===== */
+:root {
+  --container-padding: 60px; /* desktop default */
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --container-padding: 32px; /* tablet */
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --container-padding: 16px; /* mobile */
+  }
+}
+
 .header {
   border-bottom: 1px solid var(--color-border);
   background: var(--color-white);
@@ -12,12 +29,13 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 8px 12px;
+  padding: 8px var(--container-padding);
   font-size: 11px;
   letter-spacing: 0.5px;
   flex-wrap: wrap;
   gap: 6px 20px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .announcementItem {
@@ -34,6 +52,8 @@
   height: var(--header-height);
   position: relative;
   gap: 12px;
+  padding: 0 var(--container-padding);
+  box-sizing: border-box;
 }
 
 .logoMark {
@@ -68,12 +88,13 @@
   display: flex;
   gap: 28px;
   justify-content: center;
-  padding: 10px 0;
+  padding: 10px var(--container-padding);
   font-size: 13px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   border-top: 1px solid var(--color-border);
   flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .iconGroup {
@@ -167,8 +188,9 @@
     right: 0;
     background: var(--color-white);
     border-bottom: 1px solid var(--color-border);
-    padding: 8px 20px 16px;
+    padding: 8px var(--container-padding) 16px;
     z-index: 60;
+    box-sizing: border-box;
   }
   .nav.navOpen a {
     padding: 10px 0;
