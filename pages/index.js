@@ -8,7 +8,7 @@ import ProductGrid from '../components/ProductGrid';
 import { fetchAllProducts, fetchCategories } from '../lib/fetchProducts';
 import styles from '../styles/Home.module.css';
 
-export default function Home({ products, categories }) {
+export default function Home({ products, categories, fetchError }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [sortBy, setSortBy] = useState('recommended');
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -69,8 +69,19 @@ export default function Home({ products, categories }) {
       </Head>
 
       <Header />
+      
 
       <main>
+            
+        {fetchError && (
+          <p style={{ background: '#ffe5e5', color: '#900', padding: '12px 24px', textAlign: 'center' }}>
+            Debug: Product fetch failed — {fetchError}
+          </p>
+        )}
+
+        <section className={`container ${styles.hero}`}></section> 
+
+
         <section className={`container ${styles.hero}`}>
           <h1>Discover Our Products</h1>
           <p>
@@ -111,9 +122,14 @@ export default function Home({ products, categories }) {
 export async function getServerSideProps() {
   try {
     const [products, categories] = await Promise.all([fetchAllProducts(), fetchCategories()]);
-    return { props: { products, categories } };
+    return { props: { products, categories, fetchError: null } };
   } catch (error) {
-    console.error('SSR fetch error:', error.message);
-    return { props: { products: [], categories: [] } };
+    return {
+      props: {
+        products: [],
+        categories: [],
+        fetchError: error.message || 'Unknown error',
+      },
+    };
   }
 }
