@@ -103,6 +103,12 @@
   padding: 2px 0;
 }
 
+/* Wrapper that groups "Follow Us" + "We Accept" as one independent column
+   (they must NOT stretch to match column 1/2 height) */
+.followColumn {
+  display: block;
+}
+
 .footerAccordion {
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   padding: 14px 0;
@@ -162,8 +168,7 @@
 }
 
 .paymentSection {
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 20px 0 0;
 }
 
 .acceptHeading {
@@ -251,10 +256,18 @@
 /* ===== TABLET + DESKTOP (641px aur upar): 3-column static layout ===== */
 @media (min-width: 641px) {
   .linksGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
     gap: 24px;
     padding: 20px 0;
+  }
+
+  /* each top-level child of linksGrid (2 details + 1 followColumn) gets
+     equal width, and each column's height is independent of the others */
+  .linksGrid > * {
+    flex: 1 1 0;
+    min-width: 0;
   }
 
   .footerAccordion {
@@ -280,9 +293,18 @@
     margin-top: 0;
   }
 
+  /* Follow Us + We Accept stacked together inside their own column */
+  .followColumn {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .followColumn .footerAccordion {
+    margin-bottom: 40px;
+  }
+
   .paymentSection {
-    border-bottom: none;
-    padding: 6px 0 16px;
+    padding: 0;
   }
 }
 
@@ -290,13 +312,30 @@
   .footer {
     padding: 24px var(--container-padding) 20px;
   }
+
   .newsletter {
     flex-direction: column;
   }
+
   .newsletterForm input {
     min-width: 100%;
     width: 100%;
   }
+
+  /* divider between "Be the first to know" and "Contact/Currency" block */
+  .newsletter > div:first-child {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  /* divider between "Contact Us" and "Currency" */
+  .currencyHeading {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
   .paymentBadge {
     font-size: 9px;
     padding: 4px 7px;
