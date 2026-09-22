@@ -2,7 +2,7 @@
   background: var(--color-black);
   color: var(--color-white);
   margin-top: 60px;
-  padding: 32px 0 24px;
+  padding: 28px 0 20px;
   border-top: 3px solid #6b3fa0;
   width: 100%;
   overflow: hidden;
@@ -12,9 +12,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #333;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .newsletter h3 {
@@ -39,7 +39,7 @@
 
 .newsletterForm input {
   padding: 10px 12px;
-  border: 1px solid #555;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   background: transparent;
   color: var(--color-white);
   font-size: 12px;
@@ -59,7 +59,7 @@
 }
 
 .currencyHeading {
-  margin-top: 16px;
+  margin-top: 14px;
 }
 
 .currencyRow {
@@ -82,13 +82,12 @@
 /* ===== Links / Accordion Section ===== */
 
 .linksGrid {
-  padding: 4px 0;
+  padding: 2px 0;
 }
 
-/* --- Mobile default: closed accordion --- */
 .footerAccordion {
-  border-bottom: 1px solid #333;
-  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 14px 0;
 }
 
 .footerAccordion summary {
@@ -135,7 +134,7 @@
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  border: 1px solid #555;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   background: none;
   color: var(--color-white);
   display: flex;
@@ -144,10 +143,9 @@
   flex-shrink: 0;
 }
 
-/* Payment section - hamesha visible, accordion ke bahar */
 .paymentSection {
-  padding: 20px 0;
-  border-bottom: 1px solid #333;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .acceptHeading {
@@ -217,7 +215,7 @@
 .applepay {
   background: #000000;
   color: #fff;
-  border: 1px solid #555;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .dpay {
@@ -229,7 +227,7 @@
   text-align: center;
   font-size: 11px;
   color: #888;
-  padding-top: 16px;
+  padding-top: 14px;
 }
 
 /* ===== TABLET + DESKTOP (641px aur upar): 3-column static layout ===== */
@@ -238,7 +236,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    padding: 28px 0;
+    padding: 20px 0;
   }
 
   .footerAccordion {
@@ -266,7 +264,7 @@
 
   .paymentSection {
     border-bottom: none;
-    padding: 8px 0 20px;
+    padding: 6px 0 16px;
   }
 }
 

@@ -110,13 +110,27 @@
   display: flex;
 }
 
-/* TABLET */
+/* TABLET (641px - 1024px): nav TEXT visible rehta hai, hamburger NAHI aata */
 @media (max-width: 1024px) {
-  .topBar {
-    padding: 0 4px;
-  }
   .logoText {
     font-size: 17px;
+  }
+  .nav {
+    gap: 16px;
+    font-size: 11px;
+  }
+  .iconGroup {
+    gap: 10px;
+  }
+}
+
+/* MOBILE (640px se neeche): ab hamburger aata hai, text nav hide hota hai */
+@media (max-width: 640px) {
+  .logoText {
+    font-size: 14px;
+  }
+  .logoMark {
+    display: none;
   }
   .nav {
     display: none;
@@ -125,12 +139,23 @@
     display: flex;
     order: 1;
   }
-  .logoMark {
-    display: none;
-  }
   .iconGroup {
     order: 3;
-    gap: 10px;
+    gap: 8px;
+  }
+  .iconBtn svg {
+    width: 16px;
+    height: 16px;
+  }
+  .hideOnSmall {
+    display: none;
+  }
+  .announcementBar {
+    font-size: 10px;
+  }
+  .announcementItem:nth-child(2),
+  .announcementItem:nth-child(3) {
+    display: none;
   }
   .nav.navOpen {
     display: flex;
@@ -148,29 +173,5 @@
   .nav.navOpen a {
     padding: 10px 0;
     border-bottom: 1px solid var(--color-border);
-  }
-}
-
-/* MOBILE */
-@media (max-width: 640px) {
-  .logoText {
-    font-size: 14px;
-  }
-  .iconGroup {
-    gap: 8px;
-  }
-  .iconBtn svg {
-    width: 16px;
-    height: 16px;
-  }
-  .hideOnSmall {
-    display: none;
-  }
-  .announcementBar {
-    font-size: 10px;
-  }
-  .announcementItem:nth-child(2),
-  .announcementItem:nth-child(3) {
-    display: none;
   }
 }
