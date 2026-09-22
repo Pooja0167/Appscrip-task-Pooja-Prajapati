@@ -17,7 +17,7 @@ export default function Footer() {
         </div>
         <div>
           <h3>Call Us</h3>
-          <p>
+          <p className={styles.contactLine}>
             +44 221 133 5360 &nbsp;&bull;&nbsp; customercare@example.com
           </p>
           <h3 className={styles.currencyHeading}>Currency</h3>

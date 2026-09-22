@@ -11,7 +11,7 @@
 
 @media (max-width: 640px) {
   :root {
-    --container-padding: 16px; /* mobile */
+    --container-padding: 20px; /* mobile */
   }
 }
 
@@ -23,6 +23,13 @@
   border-top: 3px solid #6b3fa0;
   width: 100%;
   overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Every element inside the footer sizes itself within its own box,
+   so padding/border never pushes anything wider than the footer. */
+.footer,
+.footer * {
   box-sizing: border-box;
 }
 
@@ -310,16 +317,71 @@
 
 @media (max-width: 640px) {
   .footer {
+    width: 100%;
     padding: 24px var(--container-padding) 20px;
+  }
+
+  /* The shared global ".container" class (used elsewhere on the page)
+     may carry its own max-width/margin/padding. Inside the footer on
+     mobile we neutralize it so the ONLY left/right spacing anyone sees
+     comes from .footer's own padding above — this is what was causing
+     text to sit closer to the left edge than the right. */
+  .footer :global(.container) {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   .newsletter {
     flex-direction: column;
+    width: 100%;
+  }
+
+  .newsletter > div {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Let every text node inside the footer wrap naturally instead of
+     overflowing or hugging the left edge on narrow screens. */
+  .footer p,
+  .footer h3,
+  .footer a,
+  .footer li {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  .newsletter p,
+  .currencyNote {
+    max-width: 100%;
+  }
+
+  /* CALL US line (phone • email) — wrap naturally, never force one line */
+  .contactLine {
+    width: 100%;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  .newsletterForm {
+    width: 100%;
   }
 
   .newsletterForm input {
-    min-width: 100%;
+    min-width: 0;
     width: 100%;
+    max-width: 100%;
+  }
+
+  .newsletterForm button {
+    width: 100%;
+    max-width: 100%;
   }
 
   /* divider between "Be the first to know" and "Contact/Currency" block */
@@ -336,8 +398,33 @@
     border-top: 1px solid rgba(255, 255, 255, 0.18);
   }
 
+  .linksGrid,
+  .followColumn,
+  .footerAccordion,
+  .accordionBody {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .paymentSection,
+  .paymentRow {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .paymentRow {
+    flex-wrap: wrap;
+  }
+
   .paymentBadge {
     font-size: 9px;
     padding: 4px 7px;
+  }
+
+  .bottomBar {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
