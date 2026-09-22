@@ -2,7 +2,7 @@
   background: var(--color-black);
   color: var(--color-white);
   margin-top: 60px;
-  padding: 40px 0 24px;
+  padding: 32px 0 24px;
   border-top: 3px solid #6b3fa0;
   width: 100%;
   overflow: hidden;
@@ -13,7 +13,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 24px;
-  padding-bottom: 28px;
+  padding-bottom: 24px;
   border-bottom: 1px solid #333;
 }
 
@@ -78,28 +78,53 @@
   margin-top: 4px;
 }
 
+/* ===== Links / Accordion Section ===== */
+
 .linksGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 24px;
-  padding: 28px 0;
+  padding: 20px 0;
 }
 
-.linksGrid h3 {
-  font-size: 12px;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-  letter-spacing: 0.5px;
+/* --- Accordion look (mobile default) --- */
+.footerAccordion {
+  border-bottom: 1px solid #333;
+  padding: 14px 0;
 }
 
-.acceptHeading {
-  margin-top: 20px;
+.footerAccordion summary {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.linksGrid li {
-  font-size: 12px;
-  color: #b5b5b5;
-  margin-bottom: 8px;
+.footerAccordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.footerAccordion summary::after {
+  content: '\25BE';
+  font-size: 13px;
+  color: var(--color-white);
+  transition: transform 0.2s ease;
+}
+
+.footerAccordion[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.accordionBody {
+  margin-top: 14px;
+}
+
+.footerAccordion li {
+  font-size: 13px;
+  color: #cfcfcf;
+  margin-bottom: 10px;
 }
 
 .socialIcons {
@@ -118,6 +143,16 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+
+.paymentSection {
+  padding-top: 18px;
+}
+
+.acceptHeading {
+  font-size: 13px;
+  text-transform: none;
+  margin-bottom: 12px;
 }
 
 .paymentRow {
@@ -141,10 +176,6 @@
 .gpay {
   background: var(--color-white);
   color: #333;
-}
-
-.gDot {
-  font-weight: 700;
 }
 
 .mastercard {
@@ -200,6 +231,49 @@
   padding-top: 16px;
 }
 
+/* ===== TABLET + DESKTOP (641px aur upar): 3-column layout, accordion band ===== */
+@media (min-width: 641px) {
+  .linksGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .footerAccordion {
+    border-bottom: none;
+    padding: 0;
+  }
+
+  /* Summary ko sirf ek static heading jaisa dikhayein, click/chevron disable karein */
+  .footerAccordion summary {
+    cursor: default;
+    pointer-events: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+  }
+
+  .footerAccordion summary::after {
+    display: none;
+  }
+
+  /* Content ko hamesha visible force karein, chahe <details> "open" ho ya na ho */
+  .footerAccordion .accordionBody {
+    display: block !important;
+    margin-top: 0;
+  }
+
+  .followColumn {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .paymentSection {
+    padding-top: 20px;
+  }
+}
+
 @media (max-width: 640px) {
   .newsletter {
     flex-direction: column;
@@ -207,10 +281,6 @@
   .newsletterForm input {
     min-width: 100%;
     width: 100%;
-  }
-  .linksGrid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 18px;
   }
   .paymentBadge {
     font-size: 9px;

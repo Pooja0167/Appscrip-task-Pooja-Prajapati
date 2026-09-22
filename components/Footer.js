@@ -30,9 +30,9 @@ export default function Footer() {
       </div>
 
       <div className={`container ${styles.linksGrid}`}>
-        <div>
-          <h3>LOGO</h3>
-          <ul>
+        <details className={styles.footerAccordion} open>
+          <summary>LOGO</summary>
+          <ul className={styles.accordionBody}>
             <li>About Us</li>
             <li>Stories</li>
             <li>Artisans</li>
@@ -40,10 +40,11 @@ export default function Footer() {
             <li>Contact Us</li>
             <li>EU Compliances Docs</li>
           </ul>
-        </div>
-        <div>
-          <h3>Quick Links</h3>
-          <ul>
+        </details>
+
+        <details className={styles.footerAccordion} open>
+          <summary>Quick Links</summary>
+          <ul className={styles.accordionBody}>
             <li>Orders &amp; Shipping</li>
             <li>Join/Login as a Seller</li>
             <li>Payment &amp; Pricing</li>
@@ -52,47 +53,52 @@ export default function Footer() {
             <li>Privacy Policy</li>
             <li>Terms &amp; Conditions</li>
           </ul>
-        </div>
-        <div>
-          <h3>Follow Us</h3>
-          <div className={styles.socialIcons}>
-            <button aria-label="Instagram">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                <rect x="3" y="3" width="18" height="18" rx="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-              </svg>
-            </button>
-            <button aria-label="LinkedIn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                <rect x="3" y="3" width="18" height="18" rx="3" />
-                <line x1="7" y1="10" x2="7" y2="17" />
-                <circle cx="7" cy="7" r="0.8" fill="currentColor" stroke="none" />
-                <path d="M11 17v-4.5a2 2 0 0 1 4 0V17" />
-                <line x1="11" y1="10" x2="11" y2="17" />
-              </svg>
-            </button>
-          </div>
+        </details>
 
-          <h3 className={styles.acceptHeading}>We Accept</h3>
-          <div className={styles.paymentRow}>
-            <span className={`${styles.paymentBadge} ${styles.gpay}`}>
-              <span className={styles.gDot} style={{ color: '#4285F4' }}>G</span>
-              <span className={styles.gDot} style={{ color: '#EA4335' }}>o</span>
-              <span className={styles.gDot} style={{ color: '#FBBC05' }}>o</span>
-              <span className={styles.gDot} style={{ color: '#4285F4' }}>g</span>
-              <span className={styles.gDot} style={{ color: '#34A853' }}>l</span>
-              <span className={styles.gDot} style={{ color: '#EA4335' }}>e</span>
-              &nbsp;Pay
-            </span>
-            <span className={`${styles.paymentBadge} ${styles.mastercard}`}>
-              <span className={styles.mcCircleRed} />
-              <span className={styles.mcCircleYellow} />
-            </span>
-            <span className={`${styles.paymentBadge} ${styles.paypal}`}>PayPal</span>
-            <span className={`${styles.paymentBadge} ${styles.amex}`}>AMEX</span>
-            <span className={`${styles.paymentBadge} ${styles.applepay}`}>&#63743; Pay</span>
-            <span className={`${styles.paymentBadge} ${styles.dpay}`}>D Pay</span>
+        <div className={styles.followColumn}>
+          <details className={styles.footerAccordion} open>
+            <summary>Follow Us</summary>
+            <div className={`${styles.socialIcons} ${styles.accordionBody}`}>
+              <button aria-label="Instagram">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                </svg>
+              </button>
+              <button aria-label="LinkedIn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                  <rect x="3" y="3" width="18" height="18" rx="3" />
+                  <line x1="7" y1="10" x2="7" y2="17" />
+                  <circle cx="7" cy="7" r="0.8" fill="currentColor" stroke="none" />
+                  <path d="M11 17v-4.5a2 2 0 0 1 4 0V17" />
+                  <line x1="11" y1="10" x2="11" y2="17" />
+                </svg>
+              </button>
+            </div>
+          </details>
+
+          <div className={styles.paymentSection}>
+            <h3 className={styles.acceptHeading}>We Accept</h3>
+            <div className={styles.paymentRow}>
+              <span className={`${styles.paymentBadge} ${styles.gpay}`}>
+                <span style={{ color: '#4285F4' }}>G</span>
+                <span style={{ color: '#EA4335' }}>o</span>
+                <span style={{ color: '#FBBC05' }}>o</span>
+                <span style={{ color: '#4285F4' }}>g</span>
+                <span style={{ color: '#34A853' }}>l</span>
+                <span style={{ color: '#EA4335' }}>e</span>
+                &nbsp;Pay
+              </span>
+              <span className={`${styles.paymentBadge} ${styles.mastercard}`}>
+                <span className={styles.mcCircleRed} />
+                <span className={styles.mcCircleYellow} />
+              </span>
+              <span className={`${styles.paymentBadge} ${styles.paypal}`}>PayPal</span>
+              <span className={`${styles.paymentBadge} ${styles.amex}`}>AMEX</span>
+              <span className={`${styles.paymentBadge} ${styles.applepay}`}>&#63743; Pay</span>
+              <span className={`${styles.paymentBadge} ${styles.dpay}`}>D Pay</span>
+            </div>
           </div>
         </div>
       </div>
