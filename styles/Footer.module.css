@@ -27,6 +27,7 @@
 .newsletter p {
   font-size: 12px;
   color: #b5b5b5;
+  max-width: 320px;
 }
 
 .newsletterForm {
@@ -81,20 +82,18 @@
 /* ===== Links / Accordion Section ===== */
 
 .linksGrid {
-  padding: 20px 0;
+  padding: 4px 0;
 }
 
-/* --- Accordion look (mobile default) --- */
+/* --- Mobile default: closed accordion --- */
 .footerAccordion {
   border-bottom: 1px solid #333;
-  padding: 14px 0;
+  padding: 16px 0;
 }
 
 .footerAccordion summary {
   font-size: 13px;
   font-weight: 700;
-  text-transform: none;
-  letter-spacing: 0.3px;
   cursor: pointer;
   list-style: none;
   display: flex;
@@ -145,13 +144,15 @@
   flex-shrink: 0;
 }
 
+/* Payment section - hamesha visible, accordion ke bahar */
 .paymentSection {
-  padding-top: 18px;
+  padding: 20px 0;
+  border-bottom: 1px solid #333;
 }
 
 .acceptHeading {
   font-size: 13px;
-  text-transform: none;
+  font-weight: 700;
   margin-bottom: 12px;
 }
 
@@ -231,12 +232,13 @@
   padding-top: 16px;
 }
 
-/* ===== TABLET + DESKTOP (641px aur upar): 3-column layout, accordion band ===== */
+/* ===== TABLET + DESKTOP (641px aur upar): 3-column static layout ===== */
 @media (min-width: 641px) {
   .linksGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+    padding: 28px 0;
   }
 
   .footerAccordion {
@@ -244,7 +246,6 @@
     padding: 0;
   }
 
-  /* Summary ko sirf ek static heading jaisa dikhayein, click/chevron disable karein */
   .footerAccordion summary {
     cursor: default;
     pointer-events: none;
@@ -258,19 +259,14 @@
     display: none;
   }
 
-  /* Content ko hamesha visible force karein, chahe <details> "open" ho ya na ho */
   .footerAccordion .accordionBody {
     display: block !important;
     margin-top: 0;
   }
 
-  .followColumn {
-    display: flex;
-    flex-direction: column;
-  }
-
   .paymentSection {
-    padding-top: 20px;
+    border-bottom: none;
+    padding: 8px 0 20px;
   }
 }
 
