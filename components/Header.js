@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import styles from '../styles/Header.module.css';
 
 const ANNOUNCEMENTS = ['Lorem ipsum dolor', 'Lorem ipsum dolor', 'Lorem ipsum dolor'];
 
 export default function Header() {
+  const [navOpen, setNavOpen] = useState(false);
+
   return (
     <header className={styles.header}>
       <div className={styles.announcementBar}>
@@ -28,7 +31,13 @@ export default function Header() {
           </svg>
         </span>
 
-        <button className={styles.menuIcon} aria-label="Open menu">
+        <button
+          className={styles.menuIcon}
+          aria-label="Open menu"
+          aria-expanded={navOpen}
+          onClick={() => setNavOpen((v) => !v)}
+          type="button"
+        >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <line x1="3" y1="6" x2="21" y2="6" />
             <line x1="3" y1="12" x2="21" y2="12" />
@@ -52,21 +61,21 @@ export default function Header() {
             </svg>
           </button>
 
-          <button className={styles.iconBtn} aria-label="Bag">
+          <button className={`${styles.iconBtn} ${styles.hideOnSmall}`} aria-label="Bag">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M6 8h12l-1 12H7L6 8z" />
               <path d="M9 8V6a3 3 0 0 1 6 0v2" />
             </svg>
           </button>
 
-          <button className={styles.iconBtn} aria-label="Account">
+          <button className={`${styles.iconBtn} ${styles.hideOnSmall}`} aria-label="Account">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <circle cx="12" cy="8" r="4" />
               <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" />
             </svg>
           </button>
 
-          <button className={styles.langBtn} type="button">
+          <button className={`${styles.langBtn} ${styles.hideOnSmall}`} type="button">
             ENG
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polyline points="6 9 12 15 18 9" />
@@ -75,7 +84,10 @@ export default function Header() {
         </div>
       </div>
 
-      <nav className={`container ${styles.nav}`} aria-label="Primary navigation">
+      <nav
+        className={`container ${styles.nav} ${navOpen ? styles.navOpen : ''}`}
+        aria-label="Primary navigation"
+      >
         <a href="#shop">Shop</a>
         <a href="#skills">Skills</a>
         <a href="#stories">Stories</a>

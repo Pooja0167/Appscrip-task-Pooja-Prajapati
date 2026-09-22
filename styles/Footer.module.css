@@ -4,6 +4,8 @@
   margin-top: 60px;
   padding: 40px 0 24px;
   border-top: 3px solid #6b3fa0;
+  width: 100%;
+  overflow: hidden;
 }
 
 .newsletter {
@@ -29,6 +31,7 @@
 
 .newsletterForm {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-top: 12px;
 }
@@ -38,8 +41,9 @@
   border: 1px solid #555;
   background: transparent;
   color: var(--color-white);
-  min-width: 220px;
   font-size: 12px;
+  flex: 1;
+  min-width: 180px;
 }
 
 .newsletterForm button {
@@ -76,7 +80,7 @@
 
 .linksGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 24px;
   padding: 28px 0;
 }
@@ -113,6 +117,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .paymentRow {
@@ -130,6 +135,7 @@
   align-items: center;
   gap: 2px;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .gpay {
@@ -194,29 +200,17 @@
   padding-top: 16px;
 }
 
-@media (max-width: 1024px) {
-  .linksGrid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-}
-
-@media (max-width: 768px) {
-  .linksGrid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .newsletterForm {
+@media (max-width: 640px) {
+  .newsletter {
     flex-direction: column;
   }
   .newsletterForm input {
-    min-width: 0;
+    min-width: 100%;
     width: 100%;
   }
-}
-
-@media (max-width: 480px) {
-  .newsletter {
-    flex-direction: column;
+  .linksGrid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 18px;
   }
   .paymentBadge {
     font-size: 9px;

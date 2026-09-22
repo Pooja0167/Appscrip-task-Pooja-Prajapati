@@ -106,11 +106,12 @@ export default function Home({ products: initialProducts, categories: initialCat
         </section>
 
         <div className="container">
-          <SortBar
+                <SortBar
             count={visibleProducts.length}
             sortBy={sortBy}
             onSortChange={setSortBy}
             onToggleFilters={() => setFiltersOpen((v) => !v)}
+            filtersOpen={filtersOpen}
           />
 
           <div className={styles.layout}>

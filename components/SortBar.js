@@ -1,4 +1,3 @@
-// components/SortBar.js
 import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 
@@ -10,7 +9,7 @@ const SORT_OPTIONS = [
   { value: 'price-asc', label: 'Price : Low to High' },
 ];
 
-export default function SortBar({ count, sortBy, onSortChange, onToggleFilters }) {
+export default function SortBar({ count, sortBy, onSortChange, onToggleFilters, filtersOpen }) {
   const [open, setOpen] = useState(false);
   const activeLabel = SORT_OPTIONS.find((o) => o.value === sortBy)?.label || 'Recommended';
 
@@ -22,7 +21,7 @@ export default function SortBar({ count, sortBy, onSortChange, onToggleFilters }
   return (
     <div className={styles.toolbar}>
       <button className={styles.filterToggle} onClick={onToggleFilters} type="button">
-        Hide Filter
+        {filtersOpen ? 'Hide Filter' : 'Show Filter'}
       </button>
       <p className={styles.resultCount}>{count} Items</p>
 

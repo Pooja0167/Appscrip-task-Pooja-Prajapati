@@ -12,15 +12,19 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 8px 16px;
+  padding: 8px 12px;
   font-size: 11px;
   letter-spacing: 0.5px;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  text-align: center;
 }
 
 .announcementItem {
   display: flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
 }
 
 .topBar {
@@ -28,8 +32,8 @@
   align-items: center;
   justify-content: space-between;
   height: var(--header-height);
-  padding: 0 24px;
   position: relative;
+  gap: 12px;
 }
 
 .logoMark {
@@ -37,6 +41,7 @@
   align-items: center;
   justify-content: center;
   color: var(--color-text);
+  flex-shrink: 0;
 }
 
 .logoText {
@@ -46,6 +51,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  white-space: nowrap;
 }
 
 .menuIcon {
@@ -55,6 +61,7 @@
   color: var(--color-text);
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .nav {
@@ -66,12 +73,14 @@
   letter-spacing: 0.5px;
   text-transform: uppercase;
   border-top: 1px solid var(--color-border);
+  flex-wrap: wrap;
 }
 
 .iconGroup {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
+  flex-shrink: 0;
 }
 
 .iconBtn {
@@ -97,21 +106,21 @@
   padding: 0;
 }
 
-@media (max-width: 1024px) {
-  .nav {
-    gap: 18px;
-    font-size: 12px;
-  }
-  .announcementBar {
-    justify-content: center;
-    gap: 20px;
-  }
-  .announcementItem:nth-child(2) {
-    display: none;
-  }
+.hideOnSmall {
+  display: flex;
 }
 
-@media (max-width: 768px) {
+/* TABLET */
+@media (max-width: 1024px) {
+  .topBar {
+    padding: 0 4px;
+  }
+  .logoText {
+    font-size: 17px;
+  }
+  .nav {
+    display: none;
+  }
   .menuIcon {
     display: flex;
     order: 1;
@@ -119,31 +128,49 @@
   .logoMark {
     display: none;
   }
-  .logoText {
-    font-size: 15px;
-  }
   .iconGroup {
     order: 3;
     gap: 10px;
+  }
+  .nav.navOpen {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+    padding: 8px 20px 16px;
+    z-index: 60;
+  }
+  .nav.navOpen a {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 640px) {
+  .logoText {
+    font-size: 14px;
+  }
+  .iconGroup {
+    gap: 8px;
   }
   .iconBtn svg {
     width: 16px;
     height: 16px;
   }
-  .announcementBar {
-    font-size: 10px;
-    gap: 12px;
-  }
-  .announcementItem:nth-child(3) {
+  .hideOnSmall {
     display: none;
   }
-}
-
-@media (max-width: 380px) {
-  .iconGroup {
-    gap: 7px;
-  }
-  .langBtn {
+  .announcementBar {
     font-size: 10px;
+  }
+  .announcementItem:nth-child(2),
+  .announcementItem:nth-child(3) {
+    display: none;
   }
 }
