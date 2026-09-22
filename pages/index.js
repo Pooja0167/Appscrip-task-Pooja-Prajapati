@@ -26,10 +26,11 @@ export default function Home({ products, categories }) {
       result = result.filter((p) => selectedCategories.includes(p.category));
     }
 
-    const sorted = [...result];
+       const sorted = [...result];
     if (sortBy === 'price-asc') sorted.sort((a, b) => a.price - b.price);
     else if (sortBy === 'price-desc') sorted.sort((a, b) => b.price - a.price);
-    else if (sortBy === 'name-asc') sorted.sort((a, b) => a.title.localeCompare(b.title));
+    else if (sortBy === 'newest') sorted.sort((a, b) => b.id - a.id);
+    else if (sortBy === 'popular') sorted.sort((a, b) => b.rating.rate - a.rating.rate);
 
     return sorted;
   }, [products, selectedCategories, sortBy]);

@@ -3,7 +3,6 @@
 }
 
 .imageWrap {
-  position: relative;
   background: #f5f5f5;
   aspect-ratio: 1 / 1;
   display: flex;
@@ -18,21 +17,6 @@
   height: 100%;
   object-fit: contain;
   padding: 16px;
-}
-
-.wishlistBtn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: var(--color-white);
-  border: none;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .title {
@@ -51,7 +35,27 @@
   margin-bottom: 4px;
 }
 
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .price {
   font-size: 13px;
   font-weight: 600;
+}
+
+.wishlistBtn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wishlistActive {
+  color: #e02020;
 }

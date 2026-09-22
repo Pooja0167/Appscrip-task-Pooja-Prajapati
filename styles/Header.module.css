@@ -6,26 +6,55 @@
   z-index: 50;
 }
 
+.announcementBar {
+  background: var(--color-black);
+  color: #ff5c5c;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 16px;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.announcementItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .topBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: var(--header-height);
+  padding: 0 24px;
+  position: relative;
+}
+
+.logoMark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+}
+
+.logoText {
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .menuIcon {
   display: none;
   background: none;
   border: none;
-  font-size: 20px;
-}
-
-.logo {
-  font-weight: 700;
-  letter-spacing: 2px;
-  font-size: 18px;
-  text-align: center;
-  flex: 1;
+  color: var(--color-text);
+  align-items: center;
+  justify-content: center;
 }
 
 .nav {
@@ -42,8 +71,30 @@
 .iconGroup {
   display: flex;
   align-items: center;
-  gap: 16px;
-  font-size: 16px;
+  gap: 18px;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.langBtn {
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text);
+  padding: 0;
 }
 
 @media (max-width: 1024px) {
@@ -51,16 +102,48 @@
     gap: 18px;
     font-size: 12px;
   }
+  .announcementBar {
+    justify-content: center;
+    gap: 20px;
+  }
+  .announcementItem:nth-child(2) {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
   .menuIcon {
-    display: block;
+    display: flex;
+    order: 1;
   }
-  .nav {
+  .logoMark {
     display: none;
   }
-  .logo {
+  .logoText {
     font-size: 15px;
+  }
+  .iconGroup {
+    order: 3;
+    gap: 10px;
+  }
+  .iconBtn svg {
+    width: 16px;
+    height: 16px;
+  }
+  .announcementBar {
+    font-size: 10px;
+    gap: 12px;
+  }
+  .announcementItem:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .iconGroup {
+    gap: 7px;
+  }
+  .langBtn {
+    font-size: 10px;
   }
 }
