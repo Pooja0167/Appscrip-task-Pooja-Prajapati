@@ -194,6 +194,13 @@
   padding-top: 16px;
 }
 
+@media (max-width: 1024px) {
+  .linksGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
 @media (max-width: 768px) {
   .linksGrid {
     grid-template-columns: 1fr 1fr;

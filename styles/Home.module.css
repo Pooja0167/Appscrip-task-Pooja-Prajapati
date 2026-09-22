@@ -50,12 +50,14 @@
   grid-template-columns: 240px 1fr;
   gap: 32px;
   padding: 24px 0 60px;
+  width: 100%;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px 20px;
+  width: 100%;
 }
 
 .emptyState {
@@ -66,11 +68,12 @@
 
 @media (max-width: 1024px) {
   .layout {
-    grid-template-columns: 200px 1fr;
-    gap: 20px;
+    grid-template-columns: 180px 1fr;
+    gap: 16px;
   }
   .grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 16px 12px;
   }
 }
 

@@ -26,6 +26,7 @@ body {
   background: var(--color-bg);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 img {
@@ -60,10 +61,25 @@ ul {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 24px;
+  width: 100%;
 }
 
+/* Tablet */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .container {
     padding: 0 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    padding: 0 14px;
   }
 }
