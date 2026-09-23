@@ -1,58 +1,43 @@
-/* ===== Shared responsive gutter (same variable used in header.css) ===== */
-:root {
-  --container-padding: 60px; /* desktop default */
-}
-
-@media (max-width: 1024px) {
-  :root {
-    --container-padding: 32px; /* tablet */
-  }
-}
-
-@media (max-width: 640px) {
-  :root {
-    --container-padding: 20px; /* mobile */
-  }
-}
-
 .footer {
   background: var(--color-black);
   color: var(--color-white);
   margin-top: 60px;
-  padding: 28px var(--container-padding) 20px;
+  padding: 0 0 20px;
   border-top: 3px solid #6b3fa0;
   width: 100%;
   overflow: hidden;
-  box-sizing: border-box;
 }
 
-/* Every element inside the footer sizes itself within its own box,
-   so padding/border never pushes anything wider than the footer. */
-.footer,
-.footer * {
-  box-sizing: border-box;
+/* ===== MOBILE (default): single column, every item bordered ===== */
+.footerGrid {
+  display: block;
+  padding-top: 8px;
 }
 
-.newsletter {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 20px;
-  padding-bottom: 20px;
+.footerItem {
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 16px 0;
 }
 
-.newsletter h3 {
+.footerItem:last-child {
+  border-bottom: none;
+}
+
+.dividerItem {
+  display: none;
+}
+
+.footerItem h3 {
   font-size: 12px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 6px;
 }
 
-.newsletter p {
+.footerItem p {
   font-size: 12px;
   color: #b5b5b5;
-  max-width: 320px;
 }
 
 .newsletterForm {
@@ -83,14 +68,12 @@
   white-space: nowrap;
 }
 
-.currencyHeading {
-  margin-top: 14px;
-}
-
 .currencyRow {
   display: flex;
   align-items: center;
   gap: 6px;
+  font-size: 12px;
+  color: #b5b5b5;
 }
 
 .flag {
@@ -100,27 +83,10 @@
 .currencyNote {
   font-size: 10px;
   color: #888;
-  max-width: 280px;
   margin-top: 4px;
 }
 
-/* ===== Links / Accordion Section ===== */
-
-.linksGrid {
-  padding: 2px 0;
-}
-
-/* Wrapper that groups "Follow Us" + "We Accept" as one independent column
-   (they must NOT stretch to match column 1/2 height) */
-.followColumn {
-  display: block;
-}
-
-.footerAccordion {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 14px 0;
-}
-
+/* Accordion look (mobile) */
 .footerAccordion summary {
   font-size: 13px;
   font-weight: 700;
@@ -172,10 +138,6 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-}
-
-.paymentSection {
-  padding: 20px 0 0;
 }
 
 .acceptHeading {
@@ -257,31 +219,66 @@
   text-align: center;
   font-size: 11px;
   color: #888;
-  padding-top: 14px;
+  padding-top: 16px;
 }
 
-/* ===== TABLET + DESKTOP (641px aur upar): 3-column static layout ===== */
+/* ===== TABLET + DESKTOP (641px aur upar): exact grid layout ===== */
 @media (min-width: 641px) {
-  .linksGrid {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 24px;
-    padding: 20px 0;
+  .footerGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      'news news contact'
+      'news news currency'
+      'divider divider divider'
+      'brand quick follow'
+      '. . payment';
+    column-gap: 32px;
+    row-gap: 20px;
+    padding: 36px 0 28px;
   }
 
-  /* each top-level child of linksGrid (2 details + 1 followColumn) gets
-     equal width, and each column's height is independent of the others */
-  .linksGrid > * {
-    flex: 1 1 0;
-    min-width: 0;
+  .newsletterItem {
+    grid-area: news;
+  }
+  .contactItem {
+    grid-area: contact;
+  }
+  .currencyItem {
+    grid-area: currency;
+  }
+  .brandItem {
+    grid-area: brand;
+  }
+  .quickItem {
+    grid-area: quick;
+  }
+  .followItem {
+    grid-area: follow;
+  }
+  .paymentItem {
+    grid-area: payment;
   }
 
-  .footerAccordion {
+  .dividerItem {
+    display: block;
+    grid-area: divider;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.18);
+    margin-top: 4px;
+  }
+
+  /* Har item ki mobile border/padding hatayein - grid gaps hi spacing dete hain */
+  .footerItem {
     border-bottom: none;
     padding: 0;
   }
 
+  .newsletterForm input {
+    max-width: 260px;
+  }
+
+  /* Accordions ko desktop pe hamesha khula/static rakhein */
   .footerAccordion summary {
     cursor: default;
     pointer-events: none;
@@ -300,131 +297,22 @@
     margin-top: 0;
   }
 
-  /* Follow Us + We Accept stacked together inside their own column */
-  .followColumn {
-    display: flex;
-    flex-direction: column;
+  .currencyItem .accordionBody {
+    margin-top: 10px;
   }
 
-  .followColumn .footerAccordion {
-    margin-bottom: 40px;
-  }
-
-  .paymentSection {
-    padding: 0;
+  .paymentItem {
+    margin-top: 4px;
   }
 }
 
 @media (max-width: 640px) {
-  .footer {
-    width: 100%;
-    padding: 24px var(--container-padding) 20px;
-  }
-
-  /* The shared global ".container" class (used elsewhere on the page)
-     may carry its own max-width/margin/padding. Inside the footer on
-     mobile we neutralize it so the ONLY left/right spacing anyone sees
-     comes from .footer's own padding above — this is what was causing
-     text to sit closer to the left edge than the right. */
-  .footer :global(.container) {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  .newsletter {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .newsletter > div {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  /* Let every text node inside the footer wrap naturally instead of
-     overflowing or hugging the left edge on narrow screens. */
-  .footer p,
-  .footer h3,
-  .footer a,
-  .footer li {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    white-space: normal;
-  }
-
-  .newsletter p,
-  .currencyNote {
-    max-width: 100%;
-  }
-
-  /* CALL US line (phone • email) — wrap naturally, never force one line */
-  .contactLine {
-    width: 100%;
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    white-space: normal;
-  }
-
-  .newsletterForm {
-    width: 100%;
-  }
-
   .newsletterForm input {
-    min-width: 0;
+    min-width: 100%;
     width: 100%;
-    max-width: 100%;
   }
-
-  .newsletterForm button {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  /* divider between "Be the first to know" and "Contact/Currency" block */
-  .newsletter > div:first-child {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  }
-
-  /* divider between "Contact Us" and "Currency" */
-  .currencyHeading {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.18);
-  }
-
-  .linksGrid,
-  .followColumn,
-  .footerAccordion,
-  .accordionBody {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .paymentSection,
-  .paymentRow {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .paymentRow {
-    flex-wrap: wrap;
-  }
-
   .paymentBadge {
     font-size: 9px;
     padding: 4px 7px;
-  }
-
-  .bottomBar {
-    width: 100%;
-    max-width: 100%;
-    padding-left: 0;
-    padding-right: 0;
   }
 }

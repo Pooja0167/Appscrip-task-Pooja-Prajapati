@@ -1,10 +1,12 @@
+// components/Footer.js
 import styles from '../styles/Footer.module.css';
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={`container ${styles.newsletter}`}>
-        <div>
+      <div className={`container ${styles.footerGrid}`}>
+        {/* Newsletter - left, spans 2 columns on desktop */}
+        <div className={`${styles.footerItem} ${styles.newsletterItem}`}>
           <h3>Be the first to know</h3>
           <p>Lorem ipsum is simply dummy text of the printing and typesetting industry, this is simply dummy text.</p>
           <form className={styles.newsletterForm} onSubmit={(e) => e.preventDefault()}>
@@ -15,23 +17,33 @@ export default function Footer() {
             <button type="submit">Subscribe</button>
           </form>
         </div>
-        <div>
-          <h3>Call Us</h3>
-          <p className={styles.contactLine}>
+
+        {/* Contact - right top */}
+        <div className={`${styles.footerItem} ${styles.contactItem}`}>
+          <h3>Contact Us</h3>
+          <p>
             +44 221 133 5360 &nbsp;&bull;&nbsp; customercare@example.com
           </p>
-          <h3 className={styles.currencyHeading}>Currency</h3>
-          <p className={styles.currencyRow}>
-            <span className={styles.flag}>&#127482;&#127480;</span> USD
-          </p>
-          <p className={styles.currencyNote}>
-            Transactions will be completed in Euros and a currency reference is available on hover.
-          </p>
         </div>
-      </div>
 
-      <div className={`container ${styles.linksGrid}`}>
-        <details className={styles.footerAccordion}>
+        {/* Currency - right, below contact, collapsible on mobile */}
+        <details className={`${styles.footerItem} ${styles.footerAccordion} ${styles.currencyItem}`}>
+          <summary>Currency</summary>
+          <div className={styles.accordionBody}>
+            <p className={styles.currencyRow}>
+              <span className={styles.flag}>&#127482;&#127480;</span> USD
+            </p>
+            <p className={styles.currencyNote}>
+              Transactions will be completed in Euros and a currency reference is available on hover.
+            </p>
+          </div>
+        </details>
+
+        {/* Full-width divider - desktop only */}
+        <div className={styles.dividerItem} aria-hidden="true" />
+
+        {/* LOGO links */}
+        <details className={`${styles.footerItem} ${styles.footerAccordion} ${styles.brandItem}`}>
           <summary>LOGO</summary>
           <ul className={styles.accordionBody}>
             <li>About Us</li>
@@ -43,7 +55,8 @@ export default function Footer() {
           </ul>
         </details>
 
-        <details className={styles.footerAccordion}>
+        {/* Quick Links */}
+        <details className={`${styles.footerItem} ${styles.footerAccordion} ${styles.quickItem}`}>
           <summary>Quick Links</summary>
           <ul className={styles.accordionBody}>
             <li>Orders &amp; Shipping</li>
@@ -56,54 +69,50 @@ export default function Footer() {
           </ul>
         </details>
 
-        {/* Follow Us + We Accept live in the SAME column so this column's
-            height stays independent of column 1 / column 2 (matches the
-            tablet design where "We Accept" sits right under the social
-            icons instead of aligning with the tallest column). */}
-        <div className={styles.followColumn}>
-          <details className={styles.footerAccordion}>
-            <summary>Follow Us</summary>
-            <div className={`${styles.socialIcons} ${styles.accordionBody}`}>
-              <button aria-label="Instagram">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <rect x="3" y="3" width="18" height="18" rx="5" />
-                  <circle cx="12" cy="12" r="4" />
-                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-                </svg>
-              </button>
-              <button aria-label="LinkedIn">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <rect x="3" y="3" width="18" height="18" rx="3" />
-                  <line x1="7" y1="10" x2="7" y2="17" />
-                  <circle cx="7" cy="7" r="0.8" fill="currentColor" stroke="none" />
-                  <path d="M11 17v-4.5a2 2 0 0 1 4 0V17" />
-                  <line x1="11" y1="10" x2="11" y2="17" />
-                </svg>
-              </button>
-            </div>
-          </details>
+        {/* Follow Us */}
+        <details className={`${styles.footerItem} ${styles.footerAccordion} ${styles.followItem}`}>
+          <summary>Follow Us</summary>
+          <div className={`${styles.socialIcons} ${styles.accordionBody}`}>
+            <button aria-label="Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+              </svg>
+            </button>
+            <button aria-label="LinkedIn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <rect x="3" y="3" width="18" height="18" rx="3" />
+                <line x1="7" y1="10" x2="7" y2="17" />
+                <circle cx="7" cy="7" r="0.8" fill="currentColor" stroke="none" />
+                <path d="M11 17v-4.5a2 2 0 0 1 4 0V17" />
+                <line x1="11" y1="10" x2="11" y2="17" />
+              </svg>
+            </button>
+          </div>
+        </details>
 
-          <div className={styles.paymentSection}>
-            <h3 className={styles.acceptHeading}>We Accept</h3>
-            <div className={styles.paymentRow}>
-              <span className={`${styles.paymentBadge} ${styles.gpay}`}>
-                <span style={{ color: '#4285F4' }}>G</span>
-                <span style={{ color: '#EA4335' }}>o</span>
-                <span style={{ color: '#FBBC05' }}>o</span>
-                <span style={{ color: '#4285F4' }}>g</span>
-                <span style={{ color: '#34A853' }}>l</span>
-                <span style={{ color: '#EA4335' }}>e</span>
-                &nbsp;Pay
-              </span>
-              <span className={`${styles.paymentBadge} ${styles.mastercard}`}>
-                <span className={styles.mcCircleRed} />
-                <span className={styles.mcCircleYellow} />
-              </span>
-              <span className={`${styles.paymentBadge} ${styles.paypal}`}>PayPal</span>
-              <span className={`${styles.paymentBadge} ${styles.amex}`}>AMEX</span>
-              <span className={`${styles.paymentBadge} ${styles.applepay}`}>&#63743; Pay</span>
-              <span className={`${styles.paymentBadge} ${styles.dpay}`}>D Pay</span>
-            </div>
+        {/* Payment - sits under Follow Us column on desktop */}
+        <div className={`${styles.footerItem} ${styles.paymentItem}`}>
+          <h3 className={styles.acceptHeading}>We Accept</h3>
+          <div className={styles.paymentRow}>
+            <span className={`${styles.paymentBadge} ${styles.gpay}`}>
+              <span style={{ color: '#4285F4' }}>G</span>
+              <span style={{ color: '#EA4335' }}>o</span>
+              <span style={{ color: '#FBBC05' }}>o</span>
+              <span style={{ color: '#4285F4' }}>g</span>
+              <span style={{ color: '#34A853' }}>l</span>
+              <span style={{ color: '#EA4335' }}>e</span>
+              &nbsp;Pay
+            </span>
+            <span className={`${styles.paymentBadge} ${styles.mastercard}`}>
+              <span className={styles.mcCircleRed} />
+              <span className={styles.mcCircleYellow} />
+            </span>
+            <span className={`${styles.paymentBadge} ${styles.paypal}`}>PayPal</span>
+            <span className={`${styles.paymentBadge} ${styles.amex}`}>AMEX</span>
+            <span className={`${styles.paymentBadge} ${styles.applepay}`}>&#63743; Pay</span>
+            <span className={`${styles.paymentBadge} ${styles.dpay}`}>D Pay</span>
           </div>
         </div>
       </div>
