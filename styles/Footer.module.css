@@ -2,42 +2,68 @@
   background: var(--color-black);
   color: var(--color-white);
   margin-top: 60px;
-  padding: 0 0 20px;
+  padding-bottom: 20px;
   border-top: 3px solid #6b3fa0;
   width: 100%;
   overflow: hidden;
 }
 
-/* ===== MOBILE (default): single column, every item bordered ===== */
-.footerGrid {
-  display: block;
-  padding-top: 8px;
+.topRow {
+  padding-top: 4px;
 }
 
-.footerItem {
+.bottomRow {
+  padding-top: 4px;
+}
+
+/* ===== SHARED: every section uses the SAME padding + border (equal spacing) ===== */
+.footerBlock {
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   padding: 16px 0;
 }
 
-.footerItem:last-child {
-  border-bottom: none;
+.blockTitle {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin: 0;
 }
 
-.dividerItem {
+.footerBlock summary {
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerBlock summary::-webkit-details-marker {
   display: none;
 }
 
-.footerItem h3 {
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 6px;
+.footerBlock summary::after {
+  content: '\25BE';
+  font-size: 13px;
+  color: var(--color-white);
+  transition: transform 0.2s ease;
 }
 
-.footerItem p {
+.footerBlock[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.blockBody {
+  margin-top: 12px;
   font-size: 12px;
   color: #b5b5b5;
+}
+
+.footerBlock li {
+  font-size: 13px;
+  color: #cfcfcf;
+  margin-bottom: 10px;
 }
 
 .newsletterForm {
@@ -73,7 +99,6 @@
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  color: #b5b5b5;
 }
 
 .flag {
@@ -84,42 +109,6 @@
   font-size: 10px;
   color: #888;
   margin-top: 4px;
-}
-
-/* Accordion look (mobile) */
-.footerAccordion summary {
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footerAccordion summary::-webkit-details-marker {
-  display: none;
-}
-
-.footerAccordion summary::after {
-  content: '\25BE';
-  font-size: 13px;
-  color: var(--color-white);
-  transition: transform 0.2s ease;
-}
-
-.footerAccordion[open] summary::after {
-  transform: rotate(180deg);
-}
-
-.accordionBody {
-  margin-top: 14px;
-}
-
-.footerAccordion li {
-  font-size: 13px;
-  color: #cfcfcf;
-  margin-bottom: 10px;
 }
 
 .socialIcons {
@@ -138,12 +127,6 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-}
-
-.acceptHeading {
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 12px;
 }
 
 .paymentRow {
@@ -215,6 +198,12 @@
   color: #fff;
 }
 
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+  margin: 4px 0;
+}
+
 .bottomBar {
   text-align: center;
   font-size: 11px;
@@ -222,87 +211,75 @@
   padding-top: 16px;
 }
 
-/* ===== TABLET + DESKTOP (641px aur upar): exact grid layout ===== */
+/* Last block in each row should not show a trailing border on mobile stack */
+.followCol .footerBlock:last-child {
+  border-bottom: none;
+}
+
+.bottomRow > .footerBlock:last-of-type,
+.bottomRow > .followCol {
+  border-bottom: none;
+}
+
+/* ===== TABLET + DESKTOP (>=641px): row/grid layout ===== */
 @media (min-width: 641px) {
-  .footerGrid {
+  .topRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 32px 0 0;
+  }
+
+  .newsletterBlock {
+    flex: 1.4;
+  }
+
+  .rightCol {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bottomRow {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-areas:
-      'news news contact'
-      'news news currency'
-      'divider divider divider'
-      'brand quick follow'
-      '. . payment';
-    column-gap: 32px;
-    row-gap: 20px;
-    padding: 36px 0 28px;
+    gap: 32px;
+    padding: 28px 0 8px;
   }
 
-  .newsletterItem {
-    grid-area: news;
-  }
-  .contactItem {
-    grid-area: contact;
-  }
-  .currencyItem {
-    grid-area: currency;
-  }
-  .brandItem {
-    grid-area: brand;
-  }
-  .quickItem {
-    grid-area: quick;
-  }
-  .followItem {
-    grid-area: follow;
-  }
-  .paymentItem {
-    grid-area: payment;
+  .followCol {
+    display: flex;
+    flex-direction: column;
   }
 
-  .dividerItem {
-    display: block;
-    grid-area: divider;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.18);
-    margin-top: 4px;
-  }
-
-  /* Har item ki mobile border/padding hatayein - grid gaps hi spacing dete hain */
-  .footerItem {
+  /* On desktop/tablet, sections are plain divs (no accordion) rendered by
+     FooterBlock - reset border/padding since grid/flex gaps handle spacing */
+  .footerBlock {
     border-bottom: none;
     padding: 0;
   }
 
-  .newsletterForm input {
-    max-width: 260px;
-  }
-
-  /* Accordions ko desktop pe hamesha khula/static rakhein */
-  .footerAccordion summary {
-    cursor: default;
-    pointer-events: none;
+  .blockTitle {
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 14px;
   }
 
-  .footerAccordion summary::after {
-    display: none;
-  }
-
-  .footerAccordion .accordionBody {
-    display: block !important;
+  .blockBody {
     margin-top: 0;
   }
 
-  .currencyItem .accordionBody {
-    margin-top: 10px;
+  .rightCol .footerBlock + .footerBlock {
+    margin-top: 20px;
   }
 
-  .paymentItem {
-    margin-top: 4px;
+  .followCol .footerBlock + .paymentBlockWrap {
+    margin-top: 20px;
+  }
+
+  .newsletterForm input {
+    max-width: 260px;
   }
 }
 
