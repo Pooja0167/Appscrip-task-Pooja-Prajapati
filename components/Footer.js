@@ -1,4 +1,3 @@
-// components/Footer.js
 import styles from '../styles/Footer.module.css';
 
 const LOGO_LINKS = ['About Us', 'Stories', 'Artisans', 'Boutiques', 'Contact Us', 'EU Compliances Docs'];
