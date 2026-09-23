@@ -5,33 +5,33 @@
   padding-bottom: 20px;
   border-top: 3px solid #6b3fa0;
   width: 100%;
-  overflow: hidden;
 }
 
-.topRow {
+.mobileOnly {
+  display: block;
   padding-top: 4px;
 }
 
-.bottomRow {
-  padding-top: 4px;
+.desktopOnly {
+  display: none;
 }
 
-/* ===== SHARED: every section uses the SAME padding + border (equal spacing) ===== */
-.footerBlock {
+/* ===================== MOBILE STYLES ===================== */
+
+.mBlock {
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   padding: 16px 0;
 }
 
-.blockTitle {
+.mTitle,
+.mSummary {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.3px;
   margin: 0;
 }
 
-.footerBlock summary {
-  font-size: 13px;
-  font-weight: 700;
+.mSummary {
   cursor: pointer;
   list-style: none;
   display: flex;
@@ -39,32 +39,55 @@
   align-items: center;
 }
 
-.footerBlock summary::-webkit-details-marker {
+.mSummary::-webkit-details-marker {
   display: none;
 }
 
-.footerBlock summary::after {
+.mSummary::after {
   content: '\25BE';
-  font-size: 13px;
   color: var(--color-white);
   transition: transform 0.2s ease;
 }
 
-.footerBlock[open] summary::after {
+.mBlock[open] > .mSummary::after {
   transform: rotate(180deg);
 }
 
-.blockBody {
-  margin-top: 12px;
+.mText {
   font-size: 12px;
   color: #b5b5b5;
+  margin-top: 6px;
 }
 
-.footerBlock li {
+.mList {
+  margin-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 14px;
+}
+
+.mList li {
   font-size: 13px;
   color: #cfcfcf;
   margin-bottom: 10px;
 }
+
+.mBlock > .socialIcons {
+  margin-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 14px;
+}
+
+.mBlock > .currencyRow {
+  margin-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 14px;
+}
+
+.mBlock > .currencyNote {
+  margin-top: 6px;
+}
+
+/* ===================== SHARED PIECES ===================== */
 
 .newsletterForm {
   display: flex;
@@ -97,12 +120,20 @@
 .currencyRow {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-size: 12px;
+  color: #b5b5b5;
 }
 
-.flag {
-  font-size: 14px;
+.flagCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .currencyNote {
@@ -133,6 +164,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  margin-top: 10px;
 }
 
 .paymentBadge {
@@ -198,12 +230,6 @@
   color: #fff;
 }
 
-.divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.18);
-  margin: 4px 0;
-}
-
 .bottomBar {
   text-align: center;
   font-size: 11px;
@@ -211,85 +237,77 @@
   padding-top: 16px;
 }
 
-/* Last block in each row should not show a trailing border on mobile stack */
-.followCol .footerBlock:last-child {
-  border-bottom: none;
-}
+/* ===================== TABLET + DESKTOP STYLES ===================== */
 
-.bottomRow > .footerBlock:last-of-type,
-.bottomRow > .followCol {
-  border-bottom: none;
-}
-
-/* ===== TABLET + DESKTOP (>=641px): row/grid layout ===== */
 @media (min-width: 641px) {
-  .topRow {
-    display: flex;
-    justify-content: space-between;
-    gap: 32px;
-    padding: 32px 0 0;
+  .mobileOnly {
+    display: none;
   }
 
-  .newsletterBlock {
+  .desktopOnly {
+    display: block;
+    padding-top: 32px;
+  }
+
+  .dTopRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .dNewsletter {
     flex: 1.4;
   }
 
-  .rightCol {
+  .dRightCol {
     flex: 1;
     display: flex;
     flex-direction: column;
+    gap: 20px;
   }
 
-  .bottomRow {
+  .dTitle {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+
+  .dText {
+    font-size: 12px;
+    color: #b5b5b5;
+  }
+
+  .divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.18);
+    margin: 28px 0;
+  }
+
+  .dBottomRow {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 32px;
-    padding: 28px 0 8px;
+    padding-bottom: 12px;
   }
 
-  .followCol {
-    display: flex;
-    flex-direction: column;
+  .dList {
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    padding-top: 14px;
   }
 
-  /* On desktop/tablet, sections are plain divs (no accordion) rendered by
-     FooterBlock - reset border/padding since grid/flex gaps handle spacing */
-  .footerBlock {
-    border-bottom: none;
-    padding: 0;
+  .dList li {
+    font-size: 13px;
+    color: #cfcfcf;
+    margin-bottom: 10px;
   }
 
-  .blockTitle {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 14px;
-  }
-
-  .blockBody {
-    margin-top: 0;
-  }
-
-  .rightCol .footerBlock + .footerBlock {
-    margin-top: 20px;
-  }
-
-  .followCol .footerBlock + .paymentBlockWrap {
+  .acceptTitle {
     margin-top: 20px;
   }
 
   .newsletterForm input {
     max-width: 260px;
-  }
-}
-
-@media (max-width: 640px) {
-  .newsletterForm input {
-    min-width: 100%;
-    width: 100%;
-  }
-  .paymentBadge {
-    font-size: 9px;
-    padding: 4px 7px;
   }
 }
