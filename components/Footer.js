@@ -66,6 +66,23 @@ function NewsletterForm() {
   );
 }
 
+function CurrencyFlag() {
+  return (
+    <span className={styles.flagCircle}>
+      <svg width="20" height="20" viewBox="0 0 20 20">
+        <circle cx="10" cy="10" r="10" fill="#fff" />
+        <rect y="0" width="20" height="1.8" fill="#B22234" />
+        <rect y="3.6" width="20" height="1.8" fill="#B22234" />
+        <rect y="7.2" width="20" height="1.8" fill="#B22234" />
+        <rect y="10.8" width="20" height="1.8" fill="#B22234" />
+        <rect y="14.4" width="20" height="1.8" fill="#B22234" />
+        <rect y="18" width="20" height="1.8" fill="#B22234" />
+        <rect x="0" y="0" width="9" height="10" fill="#3C3B6E" />
+      </svg>
+    </span>
+  );
+}
+
 export default function Footer() {
   return (
     <footer className={styles.footer}>
@@ -79,27 +96,15 @@ export default function Footer() {
           <NewsletterForm />
         </div>
 
-        <div className={styles.mBlock}>
+             <div className={styles.mBlock}>
           <h3 className={styles.mTitle}>Call Us</h3>
           <p className={styles.mText}>+44 221 133 5360 &nbsp;&bull;&nbsp; customercare@example.com</p>
         </div>
 
         <details className={styles.mBlock}>
           <summary className={styles.mSummary}>Currency</summary>
-                   <p className={styles.currencyRow}>
-            <span className={styles.flagCircle}>
-              <svg width="20" height="20" viewBox="0 0 20 20">
-                <circle cx="10" cy="10" r="10" fill="#fff" />
-                <rect y="0" width="20" height="1.8" fill="#B22234" />
-                <rect y="3.6" width="20" height="1.8" fill="#B22234" />
-                <rect y="7.2" width="20" height="1.8" fill="#B22234" />
-                <rect y="10.8" width="20" height="1.8" fill="#B22234" />
-                <rect y="14.4" width="20" height="1.8" fill="#B22234" />
-                <rect y="18" width="20" height="1.8" fill="#B22234" />
-                <rect x="0" y="0" width="9" height="10" fill="#3C3B6E" />
-              </svg>
-            </span>
-            USD
+          <p className={styles.currencyRow}>
+            <CurrencyFlag /> USD
           </p>
           <p className={styles.currencyNote}>
             Transactions will be completed in Euros and a currency reference is available on hover.
@@ -148,25 +153,14 @@ export default function Footer() {
 
           <div className={styles.dRightCol}>
             <div>
-              <h3 className={styles.dTitle}>Call Us</h3>
-              <p className={styles.dText}>+44 221 133 5360 &nbsp;&bull;&nbsp; customercare@example.com</p>
+              <h3 className={styles.dTitle}>Contact Us</h3>
+              <p className={styles.dText}>+44 221 133 5360</p>
+              <p className={styles.dText}>customercare@example.com</p>
             </div>
             <div>
               <h3 className={styles.dTitle}>Currency</h3>
               <p className={styles.currencyRow}>
-                <span className={styles.flagCircle}>
-                  <svg width="20" height="20" viewBox="0 0 20 20">
-                    <circle cx="10" cy="10" r="10" fill="#fff" />
-                    <rect y="0" width="20" height="1.8" fill="#B22234" />
-                    <rect y="3.6" width="20" height="1.8" fill="#B22234" />
-                    <rect y="7.2" width="20" height="1.8" fill="#B22234" />
-                    <rect y="10.8" width="20" height="1.8" fill="#B22234" />
-                    <rect y="14.4" width="20" height="1.8" fill="#B22234" />
-                    <rect y="18" width="20" height="1.8" fill="#B22234" />
-                    <rect x="0" y="0" width="9" height="10" fill="#3C3B6E" />
-                  </svg>
-                </span>
-                USD
+                <CurrencyFlag /> USD
               </p>
               <p className={styles.currencyNote}>
                 Transactions will be completed in Euros and a currency reference is available on hover.

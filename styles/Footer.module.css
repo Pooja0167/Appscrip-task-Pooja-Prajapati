@@ -17,10 +17,20 @@
 }
 
 /* ===================== MOBILE STYLES ===================== */
+/* Each block is inside .container, so its border-bottom automatically
+   aligns with the 16px left/right padding and never touches screen edges. */
 
 .mBlock {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 16px 0;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.699);
+  padding: 18px 0;
+}
+
+.mBlock:first-child {
+  padding-top: 0;
+}
+
+.mBlock:last-child {
+  border-bottom: none;
 }
 
 .mTitle,
@@ -59,9 +69,13 @@
   margin-top: 6px;
 }
 
+.mText:first-of-type {
+  margin-top: 8px;
+}
+
 .mList {
   margin-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
   padding-top: 14px;
 }
 
@@ -73,13 +87,13 @@
 
 .mBlock > .socialIcons {
   margin-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
   padding-top: 14px;
 }
 
 .mBlock > .currencyRow {
   margin-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
   padding-top: 14px;
 }
 
@@ -277,11 +291,12 @@
   .dText {
     font-size: 12px;
     color: #b5b5b5;
+    margin-bottom: 4px;
   }
 
   .divider {
     height: 1px;
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.986);
     margin: 28px 0;
   }
 
